@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<emulator>
+	<properties>
+		<property name="HVAC_AUTO_ON" value="304088330">
+			<zones>
+				<row>ROW_1</row>
+			</zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+
+		<property name="HVAC_AC_ON" value="304088325">
+			<zones>
+				<row>ROW_1</row>
+			</zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+
+		<property name="HVAC_RECIRC_ON" value="304088328">
+			<zones>
+				<row>ROW_1</row>
+			</zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+
+		<property name="HVAC_DEFROSTER" value="320865540">
+			<zones>
+				<window>FRONT_WINDSHIELD</window>
+				<window>REAR_WINDSHIELD</window>
+			</zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+
+		<property name="HVAC_FAN_SPEED" value="306185472">
+			<zones>
+				<row>ROW_1</row>
+			</zones>
+			<values type="int32_t">
+				<value name ="min">1</value>
+				<value name ="max">6</value>
+			</values>
+		</property>
+
+		<property name="HVAC_FAN_DIRECTION" value="306185473">
+			<zones>
+				<row>ROW_1</row>
+			</zones>
+			<values type="enum">
+				<value name ="FACE">1</value>
+				<value name ="FLOOR">2</value>
+				<value name ="FACE_AND_FLOOR">3</value>
+				<value name ="DEFROST_AND_FLOOR">5</value>
+			</values>
+		</property>
+
+		<property name="HVAC_SEAT_TEMPERATURE" value="356517131">
+			<zones>
+				<seat>ROW_1_LEFT</seat>
+				<seat>ROW_1_RIGHT</seat>
+			</zones>
+			<values type="int32_t">
+				<value name ="min">0</value>
+				<value name ="max">3</value>
+			</values>
+		</property>
+
+		<property name="HVAC_TEMPERATURE_SET" value="308282627">
+			<zones>
+				<row>ROW_1_LEFT</row>
+				<row>ROW_1_RIGHT</row>
+			</zones>
+			<values type="float">
+				<value name ="min">15.6</value>
+				<value name ="max">29.9</value>
+			</values>
+		</property>
+
+		<property name="PERF_VEHICLE_SPEED" value="291504647">
+			<zones></zones>
+			<values type="float"></values>
+		</property>
+	</properties>
+	<zones>
+		<rows>
+			<row name="ROW_1">8</row>
+			<row name="ROW_1_LEFT">1</row>
+			<row name="ROW_1_RIGHT">4</row>
+		</rows>
+		<seats>
+			<seat name="ROW_1_LEFT">1</seat>
+			<seat name="ROW_1_RIGHT">4</seat>
+		</seats>
+		<windows>
+			<window name="FRONT_WINDSHIELD">1</window>
+			<window name="REAR_WINDSHIELD">2</window>
+		</windows>
+	</zones>
+
+</emulator>

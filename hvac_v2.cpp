@@ -43,48 +43,48 @@ struct zonevalue{
 int connect_socket(){
 
 	struct sockaddr_in 	address;
-    int 				sock = 0;
-    struct sockaddr_in 	serv_addr;
+	int 				sock = 0;
+	struct sockaddr_in 	serv_addr;
 
-    if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0){
+	if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0){
 		printf("Socket creation error\n");
         return -1;
     }
 
-    memset(&serv_addr, '0', sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port	 = htons(PORT);
+	memset(&serv_addr, '0', sizeof(serv_addr));
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_port	 = htons(PORT);
 
-    if(inet_pton(AF_INET, "10.1.75.162", &serv_addr.sin_addr) <= 0){
-        printf("Invalid address/ Address not supported\n");
-        return -1;
+	if(inet_pton(AF_INET, "10.1.75.162", &serv_addr.sin_addr) <= 0){
+		printf("Invalid address/ Address not supported\n");
+		return -1;
     }
 
-    if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0){
-        printf("Connection Failed\n");
-        return -1;
+	if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0){
+		printf("Connection Failed\n");
+		return -1;
     }
 
-    return sock;
+	return sock;
 }
 
 void sendToServer(int sock, emulator::EmulatorMessage* message){
 
 	int32_t 	messageLen;
 	size_t	 	size = message->ByteSize();
-    void* 		buff = malloc(size);
+	void* 		buff = malloc(size);
 
-    if(!(message->SerializeToArray(buff, size))){
+	if(!(message->SerializeToArray(buff, size))){
 		printf("Failed to serialize to array\n");
 	}
 
 	messageLen = htonl(size);
 
-    if(!(send(sock, &messageLen, sizeof(messageLen), 0))){
+	if(!(send(sock, &messageLen, sizeof(messageLen), 0))){
 		printf("Failed to send message size\n");
 	}
 
-    if(!(send(sock, (void*)buff, messageLen, 0))){
+	if(!(send(sock, (void*)buff, messageLen, 0))){
 		printf("Failed to send message\n");
 	}
 }
@@ -102,11 +102,11 @@ void receiveFromServer(int sock, emulator::EmulatorMessage* message){
 	}
 
 	buffer_size = ntohl(buffer_size);
-    msg         = (uint8_t*)malloc(sizeof(uint8_t)*buffer_size);
+	msg         = (uint8_t*)malloc(sizeof(uint8_t)*buffer_size);
 
 	memset(msg, 0, sizeof(uint8_t)*buffer_size);
 
-    do{
+	do{
 		size_recv = recv(sock, (void*)&(msg[size_recv]),  buffer_size-size_recv ,0);
 		if(!size_recv){
 			printf("Failed to receive message\n");
@@ -115,7 +115,7 @@ void receiveFromServer(int sock, emulator::EmulatorMessage* message){
 		size_pre = size_recv;
 	}while(size_all != buffer_size);
 
-    if(!(message->ParseFromArray((void*)msg, buffer_size))) {
+	if(!(message->ParseFromArray((void*)msg, buffer_size))) {
 		printf("Failed to parse from array\n");
 	}
 }
@@ -438,18 +438,18 @@ float treatFloatValue(propertyconfig* propertyStruct, char* val){
 
 int getProperty(emulator::EmulatorMessage* message, char* prop, xmlNodePtr cur, xmlDocPtr doc){
 
-	xmlNodePtr 					properties;
-	propertyconfig* 			propertyStruct;
-	zonevalue* 					zoneTovalue;
+	xmlNodePtr					properties;
+	propertyconfig*				propertyStruct;
+	zonevalue*					zoneTovalue;
 	int							zoneValue;
 	emulator::VehiclePropGet*	propget;
 
 	message->set_msg_type(emulator::MsgType::GET_PROPERTY_CMD);
 
 	propget			= message->add_prop();
-	properties 		= parseProperties(cur);
+	properties		= parseProperties(cur);
 	propertyStruct	= getPropertyRequested(doc, properties, prop);
-	zoneTovalue 	= convZoneValue(doc, cur);
+	zoneTovalue		= convZoneValue(doc, cur);
 
 
 	if(properties == 0){
@@ -479,19 +479,19 @@ int setProperty(emulator::EmulatorMessage* message, char* prop, char* val, xmlNo
 
 	float							floatvalue;
 	int32_t							intvalue;
-	xmlNodePtr 						properties;
-	propertyconfig* 				propertyStruct;
-	zonevalue* 						zoneTovalue;
+	xmlNodePtr						properties;
+	propertyconfig*					propertyStruct;
+	zonevalue*						zoneTovalue;
 	int								zoneValue;
 	xmlChar*						enumValue;
-	emulator::VehiclePropValue* 	propset;
+	emulator::VehiclePropValue*		propset;
 
 	message->set_msg_type(emulator::MsgType::SET_PROPERTY_CMD);
 
-	propset 		= message->add_value();
-	properties 		= parseProperties(cur);
+	propset			= message->add_value();
+	properties		= parseProperties(cur);
 	propertyStruct	= getPropertyRequested(doc, properties, prop);
-	zoneTovalue 	= convZoneValue(doc, cur);
+	zoneTovalue		= convZoneValue(doc, cur);
 
 	if(properties == 0){
 		return -1;
@@ -611,7 +611,7 @@ int main() {
 	int							sock;
 	xmlNodePtr					cur;
 	xmlDocPtr 					doc;
-    emulator::EmulatorMessage 	message;
+	emulator::EmulatorMessage 	message;
 	emulator::EmulatorMessage	message_recv;
 
 
@@ -627,11 +627,11 @@ int main() {
 
 	sock = connect_socket();
 
-    sendToServer(sock, &message);
-    receiveFromServer(sock, &message_recv);
-    afficher_resultat(&message_recv);
+	sendToServer(sock, &message);
+	receiveFromServer(sock, &message_recv);
+	afficher_resultat(&message_recv);
 
 	google::protobuf::ShutdownProtobufLibrary();
 
-    return 0;
+	return 0;
 }

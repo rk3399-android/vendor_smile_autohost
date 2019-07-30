@@ -89,7 +89,67 @@
 
 		<property name="PERF_VEHICLE_SPEED" value="291504647">
 			<zones></zones>
-			<values type="float"></values>
+			<values type="float">
+				<value name ="min">0</value>
+				<value name ="max">120</value>
+			</values>	
+		</property>
+		
+		<property name="ABS_ACTIVE" value="287310858">
+			<zones></zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+		
+		<property name="PARKING_BRAKE_ON" value="287310850">
+			<zones></zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>
+		</property>
+		
+		<property name="ENGINE_RPM" value="291504901">
+			<zones></zones>
+			<values type="float">
+				<value name ="min">0</value>
+				<value name ="max">6000</value>
+			</values>	
+		</property>
+		
+		<property name="PERF_ODOMETER" value="291504644">
+			<zones></zones>
+			<values type="float">
+				<value name ="min">0</value>
+				<value name ="max">1000000</value>
+			</values>	
+		</property>
+		
+		<property name="FUEL_LEVEL_LOW" value="287310853">
+			<zones></zones>
+			<values type="enum">
+				<value name ="ON">1</value>
+				<value name ="OFF">0</value>
+			</values>	
+		</property>
+		
+		<property name="GEAR_SELECTION" value="289408000">
+			<zones></zones>
+			<values type="enum">
+				<value name ="GEAR_NEUTRAL">1</value>
+				<value name ="GEAR_REVERSE">2</value>
+				<value name ="GEAR_PARK">4</value>
+				<value name ="GEAR_DRIVE">8</value>
+				<value name ="GEAR_LOW">16</value>
+				<value name ="GEAR_1">16</value>
+				<value name ="GEAR_2">32</value>
+				<value name ="GEAR_3">64</value>
+				<value name ="GEAR_4">128</value>
+				<value name ="GEAR_5">256</value>
+				<value name ="GEAR_6">512</value>
+			</values>	
 		</property>
 	</properties>
 	<zones>

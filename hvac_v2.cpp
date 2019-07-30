@@ -42,10 +42,19 @@ struct zonevalue{
 
 int connect_socket(){
 
-	struct sockaddr_in 	address;
-	int 				sock = 0;
-	struct sockaddr_in 	serv_addr;
+	struct sockaddr_in address;
+	int                sock = 0;
+	struct sockaddr_in serv_addr;
+	char*			   addressIP = getenv("ANDROID_EMU_IPV4");	
+	char 			   adresse_entree[SIZE];
 
+	
+	if(	addressIP == NULL){
+		printf("donner l'adresse IPv4: ");
+		scanf("%s", adresse_entree);
+		addressIP = adresse_entree;
+	}
+			
 	if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0){
 		printf("Socket creation error\n");
         return -1;
@@ -54,8 +63,8 @@ int connect_socket(){
 	memset(&serv_addr, '0', sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port	 = htons(PORT);
-
-	if(inet_pton(AF_INET, "10.1.75.162", &serv_addr.sin_addr) <= 0){
+	
+	if(inet_pton(AF_INET, addressIP, &serv_addr.sin_addr) <= 0){
 		printf("Invalid address/ Address not supported\n");
 		return -1;
     }
@@ -84,7 +93,7 @@ void sendToServer(int sock, emulator::EmulatorMessage* message){
 		printf("Failed to send message size\n");
 	}
 
-	if(!(send(sock, (void*)buff, messageLen, 0))){
+	if(!(send(sock, (void*)buff, size, 0))){
 		printf("Failed to send message\n");
 	}
 }
@@ -375,7 +384,7 @@ xmlChar* getZoneValue(zonevalue* zoneTovalue, xmlChar* zonetype, xmlChar* areana
 		}
 	}
 
-	printf("Not found zone value in zones");
+	printf("Not found zone value in zones\n");
 	return (xmlChar*)(&("Invalid"));
 }
 /*requestRow permet de demander à l'utilisateur d'entrer la zone voulue s'il y a plusieurs zones definies dans la définition de la ppté et de renvoyer la valeur correspondante  */
@@ -614,10 +623,9 @@ int main() {
 	emulator::EmulatorMessage 	message;
 	emulator::EmulatorMessage	message_recv;
 
-
 	doc = parseDoc((char*)"property.xml");
 	cur = parseemulator(doc);
-
+	
 	if(cur == 0){
 		return -1;
 	}
@@ -626,6 +634,10 @@ int main() {
 	}
 
 	sock = connect_socket();
+	
+	if(sock == -1){
+		return -1;
+	}	
 
 	sendToServer(sock, &message);
 	receiveFromServer(sock, &message_recv);

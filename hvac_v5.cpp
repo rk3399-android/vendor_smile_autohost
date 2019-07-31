@@ -37,20 +37,29 @@ int connect_socket(){
 	struct sockaddr_in 	address; 
     int 				sock = 0; 
     struct sockaddr_in 	serv_addr;
-    
-    if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0){ 
-		printf("Socket creation error\n"); 
-        return -1; 
-    } 
-    
-    memset(&serv_addr, '0', sizeof(serv_addr)); 
-    serv_addr.sin_family = AF_INET; 
-    serv_addr.sin_port	 = htons(PORT); 
+    char*			   addressIP = getenv("ANDROID_EMU_IPV4");	
+	char 			   adresse_entree[SIZE];
 
-    if(inet_pton(AF_INET, "10.1.75.162", &serv_addr.sin_addr) <= 0){ 
-        printf("Invalid address/ Address not supported\n"); 
-        return -1; 
-    } 
+	
+	if(	addressIP == NULL){
+		printf("donner l'adresse IPv4: ");
+		scanf("%s", adresse_entree);
+		addressIP = adresse_entree;
+	}
+			
+	if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0){
+		printf("Socket creation error\n");
+        return -1;
+    }
+
+	memset(&serv_addr, '0', sizeof(serv_addr));
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_port	 = htons(PORT);
+	
+	if(inet_pton(AF_INET, addressIP, &serv_addr.sin_addr) <= 0){
+		printf("Invalid address/ Address not supported\n");
+		return -1;
+    }
     
     if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0){ 
         printf("Connection Failed\n"); 

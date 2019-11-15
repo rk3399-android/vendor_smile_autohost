@@ -264,19 +264,19 @@ int main(){
     ssize_t 						j;
     uint64_t 						count;
     long							nbTime;
-    struct itimerspec*         		ts;
+    struct itimerspec*				ts;
     timerproperty*					timerpropStruct;
     emulator::VehiclePropValue*		propset;
       
-    nbproperty		= 0;
-    i				= 0;
+	nbproperty		= 0;
+	i				= 0;
 	doc 			= parseDoc((char*)"property.xml");
 	cur 			= parseemulator(doc);
 	sce 			= parseDoc((char*)"scenario.xml");
 	scenod 			= parsescenario(sce);
 	nbTime			= xmlChildElementCount(scenod);
 	efd 			= epoll_create1(0);
-    ev.events 		= EPOLLIN;
+	ev.events 		= EPOLLIN;
 	Time			= scenod->xmlChildrenNode;
 	properties		= parseProperties(cur);
 	ts				= (itimerspec*)malloc(sizeof(itimerspec) * nbTime);
@@ -286,7 +286,7 @@ int main(){
 	memset(tf, 0, sizeof(int) * nbTime);
 	memset(ts, 0, sizeof(itimerspec) * nbTime);
 	memset(timerpropStruct, 0, sizeof(timerproperty) * nbTime);
-	
+	memset(&ev.data, 0, sizeof(ev.data));
 	message.set_msg_type(emulator::MsgType::SET_PROPERTY_CMD);
 
 	while(Time != NULL){
@@ -301,7 +301,7 @@ int main(){
 			timerfd_settime(tf[i], 0, &ts[i], NULL);
 			ev.data.fd = tf[i];
 			epoll_ctl(efd, EPOLL_CTL_ADD, tf[i], &ev);
-				
+
 			property = Time->xmlChildrenNode;
 			j = 0;
 			timerpropStruct[i].nbproperty = xmlChildElementCount(Time);
@@ -364,12 +364,12 @@ int main(){
 							epoll_ctl(efd, EPOLL_CTL_ADD, tf[d], &ev);
 							nr_events = epoll_wait(efd, events, 100, -1);
 							printf("nr_events boucle %zd\n",nr_events);
-						}	
+						}
 					}
 				}
 			}
-		}	
-	}	
+		}
+	}
 	
 	if(cur == 0){
 		return -1;

@@ -26,7 +26,10 @@ cc_binary {
 		"libprotobuf-cpp-lite",
 	"libxml2",
 	],
-	srcs: ["hvac_v5.cpp"],
+	srcs: ["main.cpp",
+			"scenario.cpp",
+			"socket.cpp",
+			"interactive.cpp"],
 
 	include_dirs: ["system/libhidl/base/include"],
 	vendor: true,

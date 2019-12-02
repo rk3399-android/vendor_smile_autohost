@@ -1,5 +1,5 @@
 service smile_auto_emu /vendor/bin/smile_auto_emu -p /vendor/etc/property.xml -s /vendor/etc/scenario.xml -i 127.0.0.1
 	user root
 	group root
-	disabled
+	class late_start
 	seclabel u:r:su:s0

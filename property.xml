@@ -92,9 +92,9 @@
 			<values type="float">
 				<value name ="min">0</value>
 				<value name ="max">120</value>
-			</values>	
+			</values>
 		</property>
-		
+
 		<property name="ABS_ACTIVE" value="287310858">
 			<zones></zones>
 			<values type="enum">
@@ -102,7 +102,7 @@
 				<value name ="OFF">0</value>
 			</values>
 		</property>
-		
+
 		<property name="PARKING_BRAKE_ON" value="287310850">
 			<zones></zones>
 			<values type="enum">
@@ -110,31 +110,31 @@
 				<value name ="OFF">0</value>
 			</values>
 		</property>
-		
+
 		<property name="ENGINE_RPM" value="291504901">
 			<zones></zones>
 			<values type="float">
 				<value name ="min">0</value>
 				<value name ="max">6000</value>
-			</values>	
+			</values>
 		</property>
-		
+
 		<property name="PERF_ODOMETER" value="291504644">
 			<zones></zones>
 			<values type="float">
 				<value name ="min">0</value>
 				<value name ="max">1000000</value>
-			</values>	
+			</values>
 		</property>
-		
+
 		<property name="FUEL_LEVEL_LOW" value="287310853">
 			<zones></zones>
 			<values type="enum">
 				<value name ="ON">1</value>
 				<value name ="OFF">0</value>
-			</values>	
+			</values>
 		</property>
-		
+
 		<property name="GEAR_SELECTION" value="289408000">
 			<zones></zones>
 			<values type="enum">
@@ -149,9 +149,10 @@
 				<value name ="GEAR_4">128</value>
 				<value name ="GEAR_5">256</value>
 				<value name ="GEAR_6">512</value>
-			</values>	
+			</values>
 		</property>
 	</properties>
+
 	<zones>
 		<rows>
 			<row name="ROW_1">8</row>

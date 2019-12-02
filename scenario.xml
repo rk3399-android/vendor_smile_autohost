@@ -3,96 +3,46 @@
 <scenario>
 	<time temps="3">
 		<property name="PARKING_BRAKE_ON" value="OFF"/>
-		<property name="GEAR_SELECTION" value="GEAR_1"/>	
+		<property name="GEAR_SELECTION" value="GEAR_1"/>
 	</time>
-	<time temps="5">
+	<time temps="6">
 		<property name="ENGINE_RPM" value="2000"/>
 		<property name="PERF_VEHICLE_SPEED" value="20"/>
 	</time>
 	<time temps="8">
 		<property name="GEAR_SELECTION" value="GEAR_2"/>
 	</time>
-	<time temps="10">
+	<time temps="11">
 		<property name="ENGINE_RPM" value="1500"/>
 		<property name="PERF_VEHICLE_SPEED" value="40"/>
 	</time>
-	<time temps="15">
+	<time temps="13">
 		<property name="GEAR_SELECTION" value="GEAR_3"/>
 	</time>
 	<time temps="16">
-		<property name="ENGINE_RPM" value="1800"/>
 		<property name="PERF_VEHICLE_SPEED" value="50"/>
 	</time>
-	<time temps="20">
-		<property name="PERF_VEHICLE_SPEED" value="60"/>
-	</time>
-	<time temps="23">
-		<property name="GEAR_SELECTION" value="GEAR_4"/>
-	</time>
-	<time temps="26">
-		<property name="ENGINE_RPM" value="2000"/>
-		<property name="PERF_VEHICLE_SPEED" value="80"/>
-	</time>
-	<time temps="30">
-		<property name="GEAR_SELECTION" value="GEAR_5"/>
-	</time>	
-	<time temps="32">
-		<property name="ENGINE_RPM" value="2300"/>
-		<property name="PERF_VEHICLE_SPEED" value="100"/>
-	</time>
-	<time temps="35">
-		<property name="GEAR_SELECTION" value="GEAR_6"/>
-	</time>	
-	<time temps="37">
-		<property name="ENGINE_RPM" value="2000"/>
-		<property name="PERF_VEHICLE_SPEED" value="120"/>
-	</time>
-	<time temps="45">
-		<property name="ENGINE_RPM" value="2000"/>
-		<property name="PERF_VEHICLE_SPEED" value="100"/>
-	</time>	
-	<time temps="47">
-		<property name="GEAR_SELECTION" value="GEAR_5"/>
-	</time>
-	<time temps="49">
-		<property name="ENGINE_RPM" value="2200"/>
-		<property name="PERF_VEHICLE_SPEED" value="80"/>
-	</time>	
-	<time temps="50">
-		<property name="GEAR_SELECTION" value="GEAR_4"/>
-	</time>
-	<time temps="53">
-		<property name="ENGINE_RPM" value="2100"/>
-		<property name="PERF_VEHICLE_SPEED" value="60"/>
-	</time>	
-	<time temps="54">
-		<property name="GEAR_SELECTION" value="GEAR_3"/>
-	</time>
-	<time temps="56">
-		<property name="ENGINE_RPM" value="1800"/>
-		<property name="PERF_VEHICLE_SPEED" value="50"/>
-	</time>	
-	<time temps="60">
-		<property name="ENGINE_RPM" value="1900"/>
-		<property name="PERF_VEHICLE_SPEED" value="40"/>
-	</time>	
-	<time temps="61">
-		<property name="GEAR_SELECTION" value="GEAR_2"/>
-	</time>
-	<time temps="63">
+	<time temps="18">
 		<property name="FUEL_LEVEL_LOW" value="ON"/>
 	</time>
-	<time temps="65">
+	<time temps="20">
+		<property name="ENGINE_RPM" value="1900"/>
+		<property name="PERF_VEHICLE_SPEED" value="40"/>
+	</time>
+	<time temps="22">
+		<property name="GEAR_SELECTION" value="GEAR_2"/>
+	</time>
+	<time temps="25">
 		<property name="ENGINE_RPM" value="2000"/>
 		<property name="PERF_VEHICLE_SPEED" value="20"/>
-	</time>	
-	<time temps="67">
+	</time>
+	<time temps="27">
+		<property name="FUEL_LEVEL_LOW" value="OFF"/>
+	</time>
+	<time temps="30">
 		<property name="ENGINE_RPM" value="0"/>
 		<property name="PERF_VEHICLE_SPEED" value="0"/>
 		<property name="GEAR_SELECTION" value="GEAR_PARK"/>
 		<property name="PARKING_BRAKE_ON" value="ON"/>
-	</time>	
-	<time temps="73">
-		<property name="FUEL_LEVEL_LOW" value="OFF"/>
 	</time>
 </scenario>
